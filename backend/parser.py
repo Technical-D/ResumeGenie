@@ -17,14 +17,15 @@ def extract_resume_data(text):
     Extract structured data (like name, email, phone number) from the resume text
     """
     email_pattern = r"[a-zA-Z0-9._%+-]+@[a-zACharacters0-9.-]+\.[a-zA-Z]{2,}"
-    phone_pattern = r"\+?[\d\(\)\- ]{7,15}"
+    phone_pattern = r"\+?[\d\(\)\- ]{10,15}"
 
     email = re.search(email_pattern, text)
     phone = re.search(phone_pattern, text)
 
     data =  {
         "email": email.group(0) if email else None,
-        "phone": phone.group(0) if phone else None
+        "phone": phone.group(0) if phone else None,
+        "text" : text
     }
     return data
 
