@@ -40,6 +40,7 @@ def extract_info_using_nlp(text):
     doc = nlp(text)
     info = {"name": None, "city": None, "country": None}
     for ent in doc.ents:
+        print(ent.label_, ent.text)
         if ent.label_ == "PERSON" and validate_name(ent.text):
             info["name"] = ent.text
         
@@ -72,8 +73,8 @@ def extract_resume_data(text):
         "email": email.group(0).strip() if email else None,
         "phone": phone.group(0).strip() if phone else None,
         "skills": skills,
-        "city" : city.strip(),
-        "country": country.strip()
+        "city" : city.strip() if city else None,
+        "country": country.strip() if country else None
     }
     return data
 
@@ -87,4 +88,4 @@ def parse_resume(file_path):
     return data
 
 if __name__ == '__main__':
-    parse_resume("uploads\Dheeraj_Gupta1.1.pdf")
+    parse_resume(r"uploads\anishagupta_resume.pdf")

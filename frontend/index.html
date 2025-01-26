@@ -3,18 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Upload</title>
+    <title>ResumeGenie - Job Application</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Upload Resume</h2>
-    <form id="resume-form">
-        <input type="file" id="fileInput" name="file" accept=".pdf" required />
-        <br><br>
-        <button type="submit">Upload</button>
+
+<div class="container">
+    <h1>ResumeGenie</h1>
+    <h2>Fill your job application in one click using ResumeGenie</h2>
+
+    <!-- File Upload Box -->
+    <div class="upload-box">
+        <input type="file" id="resumeFile" accept="application/pdf">
+    </div>
+
+    <!-- Application Form -->
+    <form id="applicationForm">
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="johndoe@example.com" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" placeholder="123-456-7890" required>
+        </div>
+        <div class="form-group">
+            <label for="skills">Skills</label>
+            <input type="text" id="skills" name="skills" placeholder="JavaScript, HTML, CSS" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="New York" required>
+        </div>
+        <button type="button" id="submitBtn">Submit Application</button>
     </form>
 
-    <h3 id="responseMessage"></h3>
+</div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>

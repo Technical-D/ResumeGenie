@@ -1,44 +1,42 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('resume-form'); // Ensure form is accessed only after the DOM is fully loaded
+async function handleFileUpload(event) {
+    const file = event.target.files[0];
 
-    form.addEventListener('submit', async function (event) {
-        event.preventDefault(); // Prevent the default form submission behavior
+    if (!file) {
+        alert('Please select a PDF file.');
+        return;
+    }
 
-        console.log("Form submission intercepted");
+    const apiKey = '8726d0e9c5b16722a784d7662cba921e793e7ae43f0ef0633976422885dc8fe0';
 
-        const fileInput = document.getElementById("fileInput");
-        const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
 
-        if (!file) {
-            alert("Please select a file before submitting.");
-            return;
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'API-Key': apiKey, 
+        },
+        body: formData,
+    };
+
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/parse_resume', requestOptions);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const formData = new FormData();
-        formData.append("file", file); // Append the file to the FormData object
+        const result = await response.json(); 
+        console.log(result);
+        document.getElementById('name').value = result.name || '';
+        document.getElementById('email').value = result.email || '';
+        document.getElementById('phone').value = result.phone || '';
+        document.getElementById('skills').value = result.skills || '';
+        document.getElementById('city').value = result.city || '';
 
-        const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
+    } catch (error) {
+        console.error('Error uploading file:', error);
+    }
+}
 
-        try {
-            const response = await fetch(`http://127.0.0.1:5000/parse_resume/`, {
-                method: "POST",
-                headers:{
-                    "API-Key": "8726d0e9c5b16722a784d7662cba921e793e7ae43f0ef0633976422885dc8fe0"
-                },
-                body: formData,
-                mode: 'cors'
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                document.getElementById("responseMessage").innerText = `Resume processed successfully. Name: ${result.name}, Email: ${result.email}`;
-            } else {
-                const errorText = await response.text();
-                document.getElementById("responseMessage").innerText = `Error: ${errorText}`;
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            document.getElementById("responseMessage").innerText = `An error occurred while uploading the resume.`;
-        }
-    });
-});
+document.getElementById('resumeFile').addEventListener('change', handleFileUpload);
