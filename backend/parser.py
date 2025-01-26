@@ -2,6 +2,7 @@ import fitz
 import re
 import spacy
 import json
+from skill import skills_set
 
 # Loading Countries and cities
 with open('country_city_mapping.json', 'r', encoding="utf-8") as f:
@@ -51,6 +52,10 @@ def extract_info_using_nlp(text):
         
     return info
 
+def extract_skills(text):
+    found_skills = [skill for skill in skills_set if re.search(rf'\b{re.escape(skill)}\b', text, re.IGNORECASE)]
+    return found_skills
+
 def extract_resume_data(text):
     """
     Extract structured data from the resume text
@@ -61,14 +66,14 @@ def extract_resume_data(text):
     name, city, country= extract_info_using_nlp(text).values()
     email = re.search(email_pattern, text)
     phone = re.search(phone_pattern, text)
-
+    skills = extract_skills(text)
     data =  {
         "name" : name,
-        "email": email.group(0) if email else None,
-        "phone": phone.group(0) if phone else None,
-        "city" : city,
-        "country": country
-        # "text" : text
+        "email": email.group(0).strip() if email else None,
+        "phone": phone.group(0).strip() if phone else None,
+        "skills": skills,
+        "city" : city.strip(),
+        "country": country.strip()
     }
     return data
 
@@ -78,7 +83,7 @@ def parse_resume(file_path):
     """
     extracted_text = extract_text_from_pdf(file_path)
     data = extract_resume_data(extracted_text)
-    print(data)
+
     return data
 
 if __name__ == '__main__':
