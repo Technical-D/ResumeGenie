@@ -3,48 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResumeGenie - Job Application</title>
+    <title>ResumeGenie</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="container">
-    <h1>ResumeGenie</h1>
-    <h2>Fill your job application in one click using ResumeGenie</h2>
-
-    <!-- File Upload Box -->
-    <div class="upload-box">
-        <input type="file" id="resumeFile" accept="application/pdf">
+    <div class="home">
+        <div class="image-container">
+            <img src="images/home.jpg" alt="ResumeGenie Image">
+        </div>
+        <h1>ResumeGenie</h1>
+        <p>Fill your job application in one click using ResumeGenie</p>
+        <a href="#parseResume" class="get-started-btn-link">
+            <button class="get-started-btn">Get Started</button>
+        </a>
     </div>
+    <div class="parseResume" id="parseResume">
+        <h3>Fill Your Application Instantly by Uploading Your Resume</h3>
 
-    <!-- Application Form -->
-    <form id="applicationForm">
-        <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" required>
+        <div class="upload-box">
+            <input type="file" id="resumeFile" accept="application/pdf">
         </div>
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="johndoe@example.com" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="text" id="phone" name="phone" placeholder="123-456-7890" required>
-        </div>
-        <div class="form-group">
-            <label for="skills">Skills</label>
-            <input type="text" id="skills" name="skills" placeholder="JavaScript, HTML, CSS" required>
-        </div>
-        <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" placeholder="New York" required>
-        </div>
-        <button type="button" id="submitBtn">Submit Application</button>
-    </form>
 
-</div>
-
-<script src="script.js"></script>
-
+        <form id="applicationForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills</label>
+                <input type="text" id="skills" name="skills" required>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <button type="button" id="submitBtn">Submit Application</button>
+        </form>
+    </div>
+    <div id="confirmationMessage" style="display:none;">
+        <h3>Application Submitted Successfully!</h3>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

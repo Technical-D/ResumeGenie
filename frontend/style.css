@@ -1,49 +1,78 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.home {
+    text-align: center;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
-}
-.container {
-    width: 80%;
-    max-width: 800px;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
 }
 h1 {
-    text-align: center;
     font-size: 3em;
-    color: #2c3e50;
+    color: #333;
+    margin-bottom: 0;
 }
-h2 {
-    text-align: center;
+p {
     font-size: 1.2em;
-    color: #7f8c8d;
+    color: #555;
     margin-top: 10px;
+}
+.image-container img {
+    width: 100%;
+    max-width: 300px;
+}
+.get-started-btn-link {
+    text-decoration: none; 
+}
+
+.get-started-btn {
+    background-color: #07d17c; 
+    color: white;
+    font-size: 1.2em;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.get-started-btn:hover {
+    background-color: #4CAF50; 
+}
+.parseResume {
+    margin: 20px 0;
+    padding: 10px 50px;
+    width: 80%;
+}
+.parseResume h3{
+    color: #333;
 }
 .upload-box {
     margin: 20px 0;
     text-align: center;
     padding: 20px;
-    border: 2px dashed #3498db;
+    border: 2px dashed #07d17c;
     border-radius: 8px;
     background-color: #ecf0f1;
+    width: fit-content;
 }
 .upload-box input {
     font-size: 1em;
     padding: 10px;
-    background-color: #3498db;
+    background-color: #07d17c;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
 }
 .upload-box input:hover {
-    background-color: #2980b9;
+    background-color: #4CAF50;
 }
 .form-group {
     margin-bottom: 20px;
@@ -67,18 +96,19 @@ button {
     padding: 12px;
     font-size: 1.2em;
     color: white;
-    background-color: #3498db;
+    background-color: #07d17c;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    width: fit-content;
 }
 button:hover {
-    background-color: #2980b9;
+    background-color: #4CAF50;
 }
-#responseContainer {
-    display: none;
+#confirmationMessage {
+    text-align: center;
     margin-top: 20px;
-    background-color: #f1c40f;
-    padding: 15px;
-    border-radius: 5px;
+    font-size: 1.5em;
+    color: #4CAF50; 
+    height: 100vh;
 }

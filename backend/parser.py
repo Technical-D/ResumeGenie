@@ -40,7 +40,6 @@ def extract_info_using_nlp(text):
     doc = nlp(text)
     info = {"name": None, "city": None, "country": None}
     for ent in doc.ents:
-        print(ent.label_, ent.text)
         if ent.label_ == "PERSON" and validate_name(ent.text):
             info["name"] = ent.text
         

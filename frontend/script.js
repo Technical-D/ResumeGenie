@@ -5,7 +5,7 @@ async function handleFileUpload(event) {
         alert('Please select a PDF file.');
         return;
     }
-
+    // This is a dummy api key 😎
     const apiKey = '8726d0e9c5b16722a784d7662cba921e793e7ae43f0ef0633976422885dc8fe0';
 
     const formData = new FormData();
@@ -27,7 +27,7 @@ async function handleFileUpload(event) {
         }
 
         const result = await response.json(); 
-        console.log(result);
+
         document.getElementById('name').value = result.name || '';
         document.getElementById('email').value = result.email || '';
         document.getElementById('phone').value = result.phone || '';
@@ -40,3 +40,8 @@ async function handleFileUpload(event) {
 }
 
 document.getElementById('resumeFile').addEventListener('change', handleFileUpload);
+
+document.getElementById('submitBtn').addEventListener('click', function() {
+    document.getElementById('parseResume').style.display = 'none';
+    document.getElementById('confirmationMessage').style.display = 'block';
+});
