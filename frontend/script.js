@@ -25,11 +25,13 @@ async function handleFileUpload(event) {
     try {
         const response = await fetch('http://127.0.0.1:5000/api/parse_resume', requestOptions);
 
+        const result = await response.json(); 
+
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            loader.style.display = "none";
+            alert(`error: ${result.error}`);
         }
 
-        const result = await response.json(); 
         loader.style.display = "none";
         document.getElementById('name').value = result.name || '';
         document.getElementById('email').value = result.email || '';
@@ -38,7 +40,8 @@ async function handleFileUpload(event) {
         document.getElementById('city').value = result.city || '';
 
     } catch (error) {
-        console.error('Error uploading file:', error);
+        loader.style.display = "none";
+        alert('Error uploading file:', error);
     }
 }
 
