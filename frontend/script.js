@@ -1,4 +1,7 @@
 async function handleFileUpload(event) {
+    const loader = document.getElementById("loader-container");
+    loader.style.display = "flex";
+
     const file = event.target.files[0];
 
     if (!file) {
@@ -27,7 +30,7 @@ async function handleFileUpload(event) {
         }
 
         const result = await response.json(); 
-
+        loader.style.display = "none";
         document.getElementById('name').value = result.name || '';
         document.getElementById('email').value = result.email || '';
         document.getElementById('phone').value = result.phone || '';
